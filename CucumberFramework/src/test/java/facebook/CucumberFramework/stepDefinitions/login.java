@@ -56,18 +56,13 @@ public class login {
 		driver.findElement(By.xpath("//input[@id='u_0_b']")).click();
 	}
 
-	@When("^user enters a valid username$")
-	public void user_enters_a_valid_username() throws Throwable {
-		String username = var_dec().getProperty("Username");
+	@When("^user enters a valid \"(.*)\" and \"(.*)\"$")
+	public void user_enters_a_valid_username_and_password(String Username, String Password) throws Throwable {
 		Thread.sleep(2000);
-		driver.findElement(By.xpath("//input[@id='email']")).sendKeys(username);
+		driver.findElement(By.xpath("//input[@id='email']")).sendKeys(Username);
+		driver.findElement(By.xpath("//input[@id='pass']")).sendKeys(Password);
 	}
 
-	@And("^user enters a valid password$")
-	public void user_enters_a_valid_password() throws Throwable {
-		String password = var_dec().getProperty("Password");
-		driver.findElement(By.xpath("//input[@id='pass']")).sendKeys(password);
-	}
 
 	@When("^the user clicks on the login button$")
 	public void the_user_clicks_on_the_login_button() throws Throwable {
@@ -93,19 +88,19 @@ public class login {
 	
 	@Then("^user should be taken to the homepage$")
 	public void user_should_be_taken_to_the_homepage() throws Throwable {
-		WebElement homepage = driver.findElement(By.xpath("//input[@id='u_0_4']"));
+		WebElement homepage = driver.findElement(By.xpath("//input[@id='u_0_b']"));
 		AssertJUnit.assertEquals(true, homepage.isDisplayed());
 		this.driver.manage().deleteAllCookies();
 	}
 		
 	
-	 @After
-	public void end() throws InterruptedException, IOException {
-	  Thread.sleep(3000); 
-	  this.driver.manage().deleteAllCookies();
+	
+	  @After public void end() throws InterruptedException, IOException {
+	  Thread.sleep(3000); this.driver.manage().deleteAllCookies();
 	  this.driver.quit(); this.driver= null;
-	  Runtime.getRuntime().exec("taskkill /F /IM ChromeDriver.exe");
+	  //Runtime.getRuntime().exec("taskkill /F /IM ChromeDriver.exe");
 	  
 	  }
+	 
 	 
 }

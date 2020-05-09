@@ -4,6 +4,7 @@ import org.junit.runner.RunWith;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
+import cucumber.api.testng.AbstractTestNGCucumberTests;
 
 @RunWith(Cucumber.class)
 
@@ -16,6 +17,6 @@ import cucumber.api.junit.Cucumber;
 			"com.cucumber.listener.ExtentCucumberFormatter:target/cucumberExtent.html"}
 )
 
-public class runner {
+public class runner extends AbstractTestNGCucumberTests{
 
 }
